@@ -1,0 +1,12 @@
+lambda_function_name        = "status_checker"
+lambda_filename             = "../dist/status_checker.zip"
+lambda_handler              = "lambda_function.handler"
+lambda_runtime              = "python3.11"
+lambda_role_name            = "lambda_exec_role"
+lambda_policy_name          = "lambda_policy"
+vpc_cidr                    = "10.0.0.0/16"
+subnet_cidr                 = "10.0.1.0/24"
+security_group_name         = "lambda_sg"
+secret_name                 = "lambda_secret"
+kms_key_description         = "KMS key for Lambda encryption"
+kms_deletion_window_in_days = 10

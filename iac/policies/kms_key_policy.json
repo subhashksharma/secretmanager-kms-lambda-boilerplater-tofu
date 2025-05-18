@@ -1,0 +1,26 @@
+{
+  "Version": "2012-10-17",
+  "Id": "key-default-1",
+  "Statement": [
+    {
+      "Sid": "Allow Lambda Role to use the key",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "${lambda_role_arn}"
+      },
+      "Action": [
+        "kms:Decrypt",
+        "kms:Encrypt",
+        "kms:GenerateDataKey*"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "Enable IAM User Permissions",
+      "Effect": "Allow",
+      "Principal": {"AWS": "arn:aws:iam::${account_id}:root"},
+      "Action": "kms:*",
+      "Resource": "*"
+    }
+  ]
+}
