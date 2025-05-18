@@ -61,7 +61,13 @@ resource "aws_security_group" "lambda_sg" {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [var.vpc_cidr]
+  }
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = [var.vpc_cidr]
   }
 }
 
@@ -88,3 +94,15 @@ resource "aws_vpc_endpoint" "kms" {
     Name = var.resource_name_tag
   }
 }
+
+# resource "aws_cloudwatch_log_group" "vpc_flow_logs" {
+#   name = "/vpc/flowlogs"
+#   retention_in_days = 7
+# }
+
+# resource "aws_vpc_flow_log" "lambda_subnet_flow_log" {
+#   vpc_id = aws_vpc.lambda_vpc.id
+#   traffic_type = "ALL"
+#   log_group_name = aws_cloudwatch_log_group.vpc_flow_logs.name
+#   iam_role_arn = aws_iam_role.lambda_exec.arn
+# }

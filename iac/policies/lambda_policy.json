@@ -11,7 +11,12 @@
     {
       "Effect": "Allow",
       "Action": [
-        "kms:Decrypt"
+        "kms:Decrypt",
+        "kms:Encrypt",
+        "kms:GenerateDataKey*",
+        "kms:ListKeys",
+        "kms:ListAliases",
+        "kms:DescribeKey"
       ],
       "Resource": "*"
     },
